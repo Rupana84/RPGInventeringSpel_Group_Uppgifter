@@ -4,28 +4,17 @@
 
 #include <string>
 #include <iostream>
+#include "Item.h"
 
-class Potion {
+class Potion : public Item {
     
-protected:
-    std::string name;
-    int value; //health, mana, strength, speed
-
 public:
     // Enumeration for different potion types
-    enum PoptionType { HEALING, MANA, STRENGTH, SPEED };
+    enum PotionType { HEALING, MANA, STRENGTH, SPEED };
 
-    Potion(std::string name, int value) : name(name), value(value) {}
+    Potion(std::string name, int value) : Item(name, value) {}
 
-    virtual void use() = 0; // pure virtual function
-
-    std::string getName() const {
-        return name;
-    }
-
-    int getValue() const {
-        return value;
-    }
+    virtual void use() const override = 0; // pure virtual function
 
     virtual ~Potion() = default; // virtual destructor for proper cleanup
 };

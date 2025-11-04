@@ -2,7 +2,7 @@
 
 StrengthPotion::StrengthPotion() : Potion("Strength Potion", 20) {}
 
-void StrengthPotion::use() {
+void StrengthPotion::use() const {
     std::cout << "You used a " << getName() << " and restored " << getValue() << " strength points!" << std::endl;
 
     // Demonstrating stack allocation

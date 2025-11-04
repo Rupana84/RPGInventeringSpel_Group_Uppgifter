@@ -2,7 +2,7 @@
 
 HealingPotion::HealingPotion() : Potion("Healing Potion", 50) {}
 
-void HealingPotion::use() {
+void HealingPotion::use() const {
     std::cout << "You used a " << getName() << " and restored " << getValue() << " health points!" << std::endl;
 
     // Demonstrating stack allocation
