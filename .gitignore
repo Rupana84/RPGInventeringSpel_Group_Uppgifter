@@ -1,0 +1,6 @@
+build/
+cmake-build-*/
+.DS_Store
+src/main.cpp
+src/Player.cpp
+src/Player.h

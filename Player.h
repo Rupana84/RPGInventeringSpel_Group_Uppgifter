@@ -13,8 +13,9 @@ class Player{
 
     std::vector<Item*> inventory;
 
-    Item* equippedItem = nullptr;
+    Item* equippedWeapon = nullptr;
     Item* equippedArmor = nullptr;
+    Item* equippedItem = nullptr;
 
     void cleanupInventory();
     
