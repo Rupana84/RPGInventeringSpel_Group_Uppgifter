@@ -11,19 +11,26 @@ class Player{
     int health;
     std::string name;
 
-    std::vector<std::unique_ptr<Item>> inventory;
+    std::vector<Item*> inventory;
 
-    Item* equippedItem = nullptr;
+    Item* equippedWeapon = nullptr;
     Item* equippedArmor = nullptr;
+    Item* equippedItem = nullptr;
+
+    void cleanupInventory();
     
 public:
     Player(const std::string& playerName, int playerHealth);
     ~Player();
 
+    Player(const Player& other) = delete;
+    Player& operator=(const Player& other) = delete;
+
+
     void displayStatus() const;
     void takeDamage(int damage);
     
-    void addItem(std::unique_ptr<Item> item);
+    void addItem(Item* item);
     void useItem(int index);
     void removeItem(int index);
 
