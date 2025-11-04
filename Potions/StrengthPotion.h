@@ -6,7 +6,7 @@
 class StrengthPotion : public Potion {
 public:
     StrengthPotion(); // Constructor declaration
-    void use() override; // use of strength potion
+    void use() const override; // use of strength potion
 };
 
 #endif // STRENGTHPOTION_H

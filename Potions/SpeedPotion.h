@@ -6,7 +6,7 @@
 class SpeedPotion : public Potion {
 public:
     SpeedPotion(); // Constructor declaration
-    void use() override; // use of speed potion
+    void use() const override; // use of speed potion
 };
 
 #endif // SPEEDPOTION_H
