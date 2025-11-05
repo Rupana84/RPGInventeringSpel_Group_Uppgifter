@@ -24,7 +24,5 @@ std::string Weapon::describe() const {
 void Weapon::use(Player& player) {
     player.equipItem(this);
 
-    setEquipped(true); 
-
     std::cout << player.getName() << " Equipped weapon " << getName() << "." << std::endl;
 }

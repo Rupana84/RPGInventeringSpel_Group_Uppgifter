@@ -8,13 +8,14 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
+#include "Player.h"
 #include "Item.h"
 #include <string>
 
 // The Weapon class represents any weapon the player can use.
 // It inherits from the base class Item and adds weapon-specific details.
 class Weapon : public Item {
-           // How much damage this weapon can deal
+        
     bool equipped{false}; // Tracks whether the weapon is currently equipped
 
 public:
@@ -46,4 +47,4 @@ public:
 
 #endif // WEAPON_H
 
-#endif //GAMEGROUP_PROJECT_WEAPON_H
+#endif //GAMEGROUP_PROJECT_WEAPON_

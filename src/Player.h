@@ -5,6 +5,8 @@
 #include "Item.h"
 #include "memory"
 
+class Weapon;
+class Armor;
 class Player{
 
     private:
@@ -13,13 +15,14 @@ class Player{
 
     std::vector<Item*> inventory;
 
-    Item* equippedWeapon = nullptr;
-    Item* equippedArmor = nullptr;
-    Item* equippedItem = nullptr;
+    Weapon* equippedWeapon = nullptr;
+    Armor* equippedArmor = nullptr;
+    //Item* equippedItem = nullptr;
 
     void cleanupInventory();
     
 public:
+    const std::string& getName() const { return name; }
     Player(const std::string& playerName, int playerHealth);
     ~Player();
 
@@ -35,6 +38,7 @@ public:
     void removeItem(int index);
 
     void equipItem(int index);
+    void equipItem(Item* item);
 
     Item* getItemByIndex(int index);
 

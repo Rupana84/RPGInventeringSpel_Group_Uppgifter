@@ -13,13 +13,14 @@
 // The Armor class represents protective gear the player can wear.
 // It inherits from Item and adds defense-related attributes.
 class Armor : public Item {
-    std::string name;   // The armor's name, e.g., "Steel Shield"
+    
     int defense;        // How much protection it provides
     bool equipped{false}; // True if this armor is currently being worn
 
 public:
     // Constructor: sets the armor name and defense value when created.
-    Armor(const std::string& n, int def) : Item(n,def) {}
+    Armor(const std::string& n, int def) 
+    : Item(n,def),defense(def) {}
 
     // Returns the armor's name.
     const std::string& getName() const override { return Item::getName(); }

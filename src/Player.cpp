@@ -3,8 +3,9 @@
 #include <stdexcept>
 #include <algorithm>
 
-#include "weapon.h"
-#include "armor.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Potion.h"
 
 void Player::cleanupInventory(){
     std::cout << "DEBUG: Manually cleaning up " << inventory.size() << " items..." << std::endl;
@@ -29,13 +30,15 @@ Player::Player(const std::string& playerName, int playerHealth)
         std::cout << "Player " << name << " constructed with " << health << " health." << std::endl;
 }
 
-void Player::displayStatus() const{
+void Player::displayStatus() const {
     std::cout << "Player: " << name << ", Health: " << health << std::endl;
+    
+    std::cout << "Equipped Weapon: " << (equippedWeapon ? equippedWeapon->getName() : "None") << std::endl;
+    std::cout << "Equipped Armor: " << (equippedArmor ? equippedArmor->getName() : "None") << std::endl; 
+    
     std::cout << "Inventory (" << inventory.size() << " items):" << std::endl;
-    std::cout << "Equipped Items: " << (equippedItem ? equippedItem->getName() : "None") << std::endl;
-
     for (size_t i = 0; i < inventory.size(); ++i) {
-        std::cout << i << ": " << inventory[i]->getName() << " (Value: " << inventory[i]->getValue() << ")" << std::endl;
+        std::cout << i << ": " << inventory[i]->describe() << std::endl; 
     }
 }
 void Player::takeDamage(int damage){
@@ -53,8 +56,15 @@ void Player::useItem(int index){
         return;
     }
     Item* item = inventory[index];
+    
     if(item){
-        item->use();
+        item->use(*this); 
+        
+        if (dynamic_cast<Potion*>(item)) {
+            removeItem(index); 
+            std::cout << item->getName() << " har förbrukats." << std::endl;
+            
+        }
     }
 }
 void Player::removeItem(int index){
@@ -81,17 +91,57 @@ void Player::removeItem(int index){
 
     inventory.erase(inventory.begin() + index);
 }
-void Player::equipItem(int index){
+void Player::equipItem(Item* item) {
+    auto it = std::find(inventory.begin(), inventory.end(), item);
+    
+    if (it != inventory.end()) {
+        int index = std::distance(inventory.begin(), it);
+        
+        Player::equipItem(index);
+    } else {
+        std::cout << "Could not equip object: Object was not found in inventory." << std::endl;
+    }
+}
+void Player::equipItem(int index) {
+    if (index < 0 || index >= static_cast<int>(inventory.size())) {
+        std::cout << "Invalid item index for equipping." << std::endl;
+        return;
+    }
 
     Item* item = inventory[index];
     
-    if(Weapon* weapon = dynamic_cast<Weapon*>(item)){
-        equippedWeapon = weapon; 
-        std::cout << name << " equipped weapon: " << weapon->getName() << std::endl;
-    } else if(Armor* armor = dynamic_cast<Armor*>(item)){
-        equippedArmor = armor; 
-        std::cout << name << " equipped armor: " << armor->getName() << std::endl;
-    } else {
-        std::cout << "Item is neither a weapon nor armor. Cannot equip." << std::endl;
+    Weapon* weapon = dynamic_cast<Weapon*>(item);
+    if (weapon) {
+        if (equippedWeapon) {
+            equippedWeapon->setEquipped(false);
+            std::cout << equippedWeapon->getName() << " unequipped." << std::endl;
+        }
+
+        equippedWeapon = weapon;
+        equippedWeapon->setEquipped(true);
+        std::cout << name << " equipped weapon: " << equippedWeapon->getName() << std::endl;
+        return;
     }
+
+    Armor* armor = dynamic_cast<Armor*>(item);
+    if (armor) {
+        if (equippedArmor) {
+            equippedArmor->setEquipped(false);
+            std::cout << equippedArmor->getName() << " unequipped." << std::endl;
+        }
+
+        equippedArmor = armor;
+        equippedArmor->setEquipped(true);
+        std::cout << name << " equipped armor: " << equippedArmor->getName() << std::endl;
+        return;
+    }
+
+    std::cout << item->getName() << " cannot be equipped." << std::endl;
+}
+
+Item* Player::getItemByIndex(int index) {
+    if (index >= 0 && index < inventory.size()) {
+        return inventory[index];
+    }
+    return nullptr;
 }
