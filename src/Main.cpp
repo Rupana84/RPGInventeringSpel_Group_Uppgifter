@@ -47,7 +47,7 @@ int main() {
                     getline(cin, name);
                     cout << "Enter weapon damage: ";
                     cin >> stat;
-                    //player.addItem(new Weapon(name, stat));
+                    player.addItem(new Weapon(name, stat));
                 } 
                 else if (type == 2) { // Armors
                     cin.ignore();
@@ -55,7 +55,7 @@ int main() {
                     getline(cin, name);
                     cout << "Enter armor defense: ";
                     cin >> stat;
-                    //player.addItem(new Armor(name, stat));
+                    player.addItem(new Armor(name, stat));
                 } 
                 else if (type == 3) { // Potion
                     cout << "\nChoose potion type:\n";
