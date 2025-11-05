@@ -5,6 +5,7 @@
 #include <iostream>
 
 // Abstrakt basklass
+class Player; 
 class Item {
 protected:
     std::string name;
@@ -15,12 +16,14 @@ public:
     virtual ~Item(); // Virtuell destruktor 
 
     // Virtuella funktioner för polymorfism
+    virtual const std::string& getName() const { return name; }
+    virtual int getValue() const { return value; }
 
-    // virtuell funktion (Abstrakt)
-    virtual void use() const = 0;
 
-    const std::string& getName() const;
-    int getValue() const;
+    virtual std::string getType() const = 0; 
+    virtual std::string describe() const = 0;
+    virtual void use(Player& player) = 0;
+
 };
 
 #endif // ITEM_H

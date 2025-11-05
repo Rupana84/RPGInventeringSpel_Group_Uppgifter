@@ -1,7 +1,12 @@
 #include "PotionFactory.h"
+#include "HealingPotion.h" // Dessa inkluderingar behövs för new HealingPotion()
+#include "ManaPotion.h"
+#include "StrengthPotion.h"
+#include "SpeedPotion.h"
 
 // Factory methods for creating potions on heap (returns raw pointers)
 Potion* PotionFactory::createHealing() {
+    // Fungerar bara när HealingPotion inte längre är abstrakt!
     return new HealingPotion();
 }
 

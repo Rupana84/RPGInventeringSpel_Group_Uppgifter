@@ -19,10 +19,10 @@ class Armor : public Item {
 
 public:
     // Constructor: sets the armor name and defense value when created.
-    Armor(const std::string& n, int def) : name(n), defense(def) {}
+    Armor(const std::string& n, int def) : Item(n,def) {}
 
     // Returns the armor's name.
-    std::string getName() const override { return name; }
+    const std::string& getName() const override { return Item::getName(); }
 
     // Returns the item type as "Armor".
     std::string getType() const override { return "Armor"; }

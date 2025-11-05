@@ -9,7 +9,7 @@
 // Example: "Shield [Armor] def=5 (equipped)"
 std::string Armor::describe() const {
     std::ostringstream os;
-    os << name << " [Armor] def=" << defense;
+    os << getName() << " [Armor] def=" << getValue();
 
     // Add "(equipped)" if this armor is currently worn.
     if (equipped)
@@ -21,5 +21,5 @@ std::string Armor::describe() const {
 // Defines what happens when the player uses this armor.
 // When used, it tells the Player to equip this armor.
 void Armor::use(Player& player) {
-    player.equipArmor(this);
+    player.equipItem(this);
 }

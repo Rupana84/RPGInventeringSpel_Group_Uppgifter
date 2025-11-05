@@ -1,11 +1,13 @@
 #ifndef POTIONFACTORY_H
 #define POTIONFACTORY_H
 
+// Korrekta sökvägar utan 'Potions/'
 #include "Potion.h"
-#include "Potions/HealingPotion.h"
-#include "Potions/ManaPotion.h"
-#include "Potions/StrengthPotion.h"
-#include "Potions/SpeedPotion.h"
+#include "ManaPotion.h"
+#include "StrengthPotion.h"
+#include "SpeedPotion.h"
+#include "HealingPotion.h"
+
 
 class PotionFactory {
 public:

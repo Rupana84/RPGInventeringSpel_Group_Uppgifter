@@ -14,16 +14,15 @@
 // The Weapon class represents any weapon the player can use.
 // It inherits from the base class Item and adds weapon-specific details.
 class Weapon : public Item {
-    std::string name;   // The weapon's name, e.g., "Sword"
-    int damage;         // How much damage this weapon can deal
+           // How much damage this weapon can deal
     bool equipped{false}; // Tracks whether the weapon is currently equipped
 
 public:
     // Constructor: sets the name and damage when a weapon is created.
-    Weapon(const std::string& n, int dmg) : name(n), damage(dmg) {}
+    Weapon(const std::string& n, int dmg) : Item(n,dmg) {}
 
     // Returns the weapon's name.
-    std::string getName() const override { return name; }
+    const std::string& getName() const override { return Item::getName(); }
 
     // Returns the item type as "Weapon".
     std::string getType() const override { return "Weapon"; }
@@ -36,7 +35,7 @@ public:
     void use(Player& player) override;
 
     // Returns how much damage this weapon provides.
-    int getDamage() const { return damage; }
+    int getDamage() const { return getValue(); }
 
     // Checks if this weapon is equipped.
     bool isEquipped() const { return equipped; }

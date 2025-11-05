@@ -2,6 +2,7 @@
 #ifndef POTION_H
 #define POTION_H
 
+#include "Player.h"
 #include <string>
 #include <iostream>
 #include "Item.h"
@@ -14,7 +15,7 @@ public:
 
     Potion(std::string name, int value) : Item(name, value) {}
 
-    virtual void use() const override = 0; // pure virtual function
+    virtual void use(Player & player) = 0; // pure virtual function
 
     virtual ~Potion() = default; // virtual destructor for proper cleanup
 };

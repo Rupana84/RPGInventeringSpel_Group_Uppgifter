@@ -2,7 +2,7 @@
 
 StrengthPotion::StrengthPotion() : Potion("Strength Potion", 20) {}
 
-void StrengthPotion::use() const {
+void StrengthPotion::use(Player& player)  {
     std::cout << "You used a " << getName() << " and restored " << getValue() << " strength points!" << std::endl;
 
     // Demonstrating stack allocation
@@ -14,4 +14,13 @@ void StrengthPotion::use() const {
     std::cout << "Temporary strength value on heap: " << *heapStrength << std::endl;
 
     delete heapStrength; // Delete heap-object to prevent memory leak
+}
+
+std::string StrengthPotion::getType() const {
+    return "Potion";
+}
+
+
+std::string StrengthPotion::describe() const {
+    return getName() + " | Increase strenght with : " + std::to_string(getValue()) + ".";
 }

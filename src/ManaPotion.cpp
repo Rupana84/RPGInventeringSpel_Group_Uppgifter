@@ -2,7 +2,7 @@
 
 ManaPotion::ManaPotion() : Potion("Mana Potion", 30) {}
 
-void ManaPotion::use() const {
+void ManaPotion::use(Player& player)  {
     std::cout << "You used a " << getName() << " and restored " << getValue() << " mana points!" << std::endl;
 
     // Demonstrating stack allocation
@@ -14,4 +14,12 @@ void ManaPotion::use() const {
     std::cout << "Temporary mana value on heap: " << *heapMana << std::endl;
 
     delete heapMana; // Delete heap-object to prevent memory leak
+}
+
+std::string ManaPotion::getType() const {
+    return "Potion";
+}
+
+std::string ManaPotion::describe() const {
+    return getName() + " | Rescharged mana : " + std::to_string(getValue()) + ".";
 }
