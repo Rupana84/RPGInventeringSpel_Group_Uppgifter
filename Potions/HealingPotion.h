@@ -1,12 +1,14 @@
 #ifndef HEALINGPOTION_H
 #define HEALINGPOTION_H
 
-#include "../Potion.h"
+#include "Potion.h"
 
 class HealingPotion : public Potion {
 public:
-    HealingPotion(); // Constructor declaration
-    void use() const override; // use of healing potion
+    explicit HealingPotion(int amount = 50)
+        : Potion("Healing Potion", amount) {}
+    void use(Player& player) override;
+    std::string describe() const override;
+    std::string getType()  const override { return "Potion"; }
 };
-
-#endif // HEALINGPOTION_H
+#endif

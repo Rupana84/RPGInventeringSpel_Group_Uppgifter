@@ -1,6 +1,48 @@
+# Build directories
 build/
 cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+CMakeScripts/
+Testing/
+CTestTestfile.cmake
+install_manifest.txt
+compile_commands.json
+
+# macOS system files
 .DS_Store
-src/main.cpp
-src/Player.cpp
-src/Player.h
+.AppleDouble
+.LSOverride
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+
+# Binary and object files
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Backup or local reference headers
+*_local_backup.h
+
+# Optional: ignore user-specific CLion configs
+cmake-build-debug/
+cmake-build-release/
+
+# Keep source files tracked
+!src/
+!Potions/
+!CMakeLists.txt
+!README.md

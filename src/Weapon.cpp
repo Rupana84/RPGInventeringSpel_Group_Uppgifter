@@ -1,7 +1,3 @@
-//
-// Created by Gavy Singh on 2025-11-03.
-//
-
 #include "Weapon.h"
 #include "Player.h"
 #include <sstream>
@@ -11,16 +7,13 @@
 std::string Weapon::describe() const {
     std::ostringstream os;
     os << name << " [Weapon] dmg=" << damage;
-
-    // Add a note if the weapon is currently equipped.
-    if (equipped)
-        os << " (equipped)";
-
+    if (equipped) os << " (equipped)";
     return os.str();
 }
 
-// Called when the player uses this weapon.
-// Instead of consuming it, it tells the Player to equip this weapon.
+// Defines what happens when the player uses this weapon.
+// Instead of consuming it, it equips the weapon.
 void Weapon::use(Player& player) {
     player.equipWeapon(this);
+    equipped = true; // mark as equipped
 }
