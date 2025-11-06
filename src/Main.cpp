@@ -6,9 +6,8 @@
 #include "Player.h"
 #include "Weapon.h"
 #include "Armor.h"
-#include "Potion.h"          // for Potion* type
-#include "PotionFactory.h"   // factory creators
-#include "HealingPotion.h"   // for the stack vs heap demo
+#include "Potion.h"
+#include "PotionFactory.h"
 
 static void clearInput() {
     std::cin.clear();
@@ -27,14 +26,6 @@ static void showMenu() {
 
 int main() {
     Player player("Hero", 100);
-
-    // Stack vs heap demo with a CONCRETE potion type
-    HealingPotion stackPotion(5);                   // stack object (OK)
-    std::cout << "Stack object: " << stackPotion.describe() << "\n";
-
-    Potion* heapPotion = PotionFactory::createHealing(); // heap object
-    std::cout << "Heap object:  " << heapPotion->describe() << " (added)\n";
-    player.addItem(heapPotion); // Player owns and will delete it
 
     bool running = true;
     while (running) {
@@ -63,7 +54,7 @@ int main() {
                     std::cout << "Potion: 1) Healing  2) Mana  3) Strength  4) Speed  0) Cancel\n> ";
                     int p; if (!(std::cin >> p)) { clearInput(); break; }
                     Potion* pot = nullptr;
-                    if      (p == 1) pot = PotionFactory::createHealing();
+                    if (p == 1) pot = PotionFactory::createHealing();
                     else if (p == 2) pot = PotionFactory::createMana();
                     else if (p == 3) pot = PotionFactory::createStrength();
                     else if (p == 4) pot = PotionFactory::createSpeed();
@@ -73,8 +64,8 @@ int main() {
             }
 
             case 2: { // Show inventory & status
-                player.displayStatus();  // ensure Player.h declares this
-                player.listItems();
+                player.displayStatus();
+                //player.listItems();
                 break;
             }
 
